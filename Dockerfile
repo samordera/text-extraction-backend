@@ -1,6 +1,6 @@
 FROM python:3.11.3-slim
 
-WORKDIR /app/clovaai-craft/clovaai-craft-master
+WORKDIR /app
 
 COPY pyproject.toml poetry.lock ./
 
@@ -12,6 +12,10 @@ RUN poetry config virtualenvs.create false \
     && for i in 1 2 3; do poetry install --no-root && break || sleep 10; done
 
 RUN export PATH=$PATH:/root/.local/bin
+
+RUN ls
+
+RUN cd clovaai-craft/clovaai-craft-master
 
 COPY . .
 
