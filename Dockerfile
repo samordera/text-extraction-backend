@@ -15,7 +15,7 @@ RUN export PATH=$PATH:/root/.local/bin
 
 RUN ls
 
-RUN cd clovaai-craft/clovaai-craft-master
+RUN cd app/clovaai-craft/clovaai-craft-master
 
 COPY . .
 

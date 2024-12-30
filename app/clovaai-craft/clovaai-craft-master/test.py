@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 import numpy as np
 import cv2
@@ -136,6 +137,14 @@ def draw_bounding_boxes(image, coords):
     return image
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 with open(os.path.join('utils', 'config.yaml')) as f:
     args = yaml.load(f, Loader=yaml.FullLoader)
