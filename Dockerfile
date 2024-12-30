@@ -11,14 +11,8 @@ ENV POETRY_CACHE_DIR=/poetry_cache
 RUN poetry config virtualenvs.create false \
     && for i in 1 2 3; do poetry install --no-root && break || sleep 10; done
 
-RUN export PATH=$PATH:/root/.local/bin
-
-RUN ls
-
-RUN cd app/clovaai-craft/clovaai-craft-master
-
 COPY . .
 
 EXPOSE 8000
 
-CMD ["poetry", "run", "uvicorn", "test:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["poetry", "run", "uvicorn", "app.clovaai-craft.clovaai-craft-master.test:app", "--host", "0.0.0.0", "--port", "8000"]
