@@ -8,6 +8,8 @@ RUN pip install poetry
 
 ENV POETRY_CACHE_DIR=/poetry_cache
 
+ENV PYTHONPATH=/app
+
 RUN poetry config virtualenvs.create false \
     && for i in 1 2 3; do poetry install --no-root && break || sleep 10; done
 
