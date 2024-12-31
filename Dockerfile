@@ -10,6 +10,11 @@ ENV POETRY_CACHE_DIR=/poetry_cache
 
 ENV PYTHONPATH=/app
 
+RUN apt-get update && apt-get install -y \
+    libgl1 \
+    libglib2.0-0 \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 RUN poetry config virtualenvs.create false \
     && for i in 1 2 3; do poetry install --no-root && break || sleep 10; done
 
